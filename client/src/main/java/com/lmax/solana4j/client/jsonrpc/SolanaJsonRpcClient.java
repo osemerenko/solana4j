@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.lmax.solana4j.client.api.AccountInfo;
 import com.lmax.solana4j.client.api.Blockhash;
+import com.lmax.solana4j.client.api.BlockResponse;
 import com.lmax.solana4j.client.api.SignatureForAddress;
 import com.lmax.solana4j.client.api.SignatureStatus;
 import com.lmax.solana4j.client.api.SimulateTransactionResponse;
@@ -107,6 +108,26 @@ public final class SolanaJsonRpcClient implements SolanaApi
                 dto -> dto,
                 "sendTransaction",
                 transactionBlob,
+                optionalParams.getParams());
+    }
+
+    @Override
+    public SolanaClientResponse<BlockResponse> getBlock(final long slot) throws SolanaJsonRpcClientException
+    {
+        return queryForObject(new TypeReference<RpcWrapperDTO<BlockResponseDTO>>()
+                              {
+                              },
+                dto -> dto, "getBlock", slot,
+                defaultOptionalParams());
+    }
+
+    @Override
+    public SolanaClientResponse<BlockResponse> getBlock(final long slot, final SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException
+    {
+        return queryForObject(new TypeReference<RpcWrapperDTO<BlockResponseDTO>>()
+                              {
+                              },
+                dto -> dto, "getBlock", slot,
                 optionalParams.getParams());
     }
 
