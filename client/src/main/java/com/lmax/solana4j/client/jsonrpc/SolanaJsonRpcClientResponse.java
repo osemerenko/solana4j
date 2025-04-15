@@ -40,4 +40,12 @@ final class SolanaJsonRpcClientResponse<T> implements SolanaClientResponse<T>
     {
         return error == null;
     }
+
+    @Override
+    public String toString() {
+        return "SolanaJsonRpcClientResponse{" +
+                "response=" + response +
+                ", error=" + error +
+                '}';
+    }
 }
