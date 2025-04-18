@@ -124,6 +124,12 @@ public final class SolanaJsonRpcClient implements SolanaApi
     @Override
     public SolanaClientResponse<BlockResponse> getBlock(final long slot, final SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException
     {
+        final Object transactionDetails = optionalParams.getParams().get("transactionDetails");
+        if("accounts".equals(transactionDetails) || "signatures".equals(transactionDetails))
+        {
+            throw new UnsupportedOperationException("Solana4J does not support the transactionDetails value " + transactionDetails);
+        }
+
         return queryForObject(new TypeReference<RpcWrapperDTO<BlockResponseDTO>>()
                               {
                               },
