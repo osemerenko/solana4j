@@ -70,7 +70,8 @@ final class BlockResponseDTO implements BlockResponse
     }
 
     @Override
-    public List<BlockResponse.Rewards> getRewards() {
+    public List<BlockResponse.Rewards> getRewards()
+    {
         return rewards != null ?
                 rewards.stream().map(x -> (BlockResponse.Rewards) x).collect(Collectors.toList()) :
                 Collections.emptyList();
@@ -85,7 +86,8 @@ final class BlockResponseDTO implements BlockResponse
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "BlockResponseDTO{" +
                 "blockHeight=" + blockHeight +
                 ", blockTime=" + blockTime +
@@ -106,11 +108,12 @@ final class BlockResponseDTO implements BlockResponse
         String rewardType;
 
         @JsonCreator
-        public RewardsDTO(final @JsonProperty("commission") Long commission,
-                          final @JsonProperty("lamports") long lamports,
-                          final @JsonProperty("postBalance") long postBalance,
-                          final @JsonProperty("pubkey") String pubkeyBase58,
-                          final @JsonProperty("rewardType") String rewardType) {
+        RewardsDTO(final @JsonProperty("commission") Long commission,
+                   final @JsonProperty("lamports") long lamports,
+                   final @JsonProperty("postBalance") long postBalance,
+                   final @JsonProperty("pubkey") String pubkeyBase58,
+                   final @JsonProperty("rewardType") String rewardType)
+        {
             this.commission = commission;
             this.lamports = lamports;
             this.postBalance = postBalance;
@@ -119,32 +122,38 @@ final class BlockResponseDTO implements BlockResponse
         }
 
         @Override
-        public Long getCommission() {
+        public Long getCommission()
+        {
             return commission;
         }
 
         @Override
-        public long getLamports() {
+        public long getLamports()
+        {
             return lamports;
         }
 
         @Override
-        public long getPostBalance() {
+        public long getPostBalance()
+        {
             return postBalance;
         }
 
         @Override
-        public String getPubkeyBase58() {
+        public String getPubkeyBase58()
+        {
             return pubkeyBase58;
         }
 
         @Override
-        public String getRewardType() {
+        public String getRewardType()
+        {
             return rewardType;
         }
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return "RewardsDTO{" +
                     "commission=" + commission +
                     ", lamports=" + lamports +
