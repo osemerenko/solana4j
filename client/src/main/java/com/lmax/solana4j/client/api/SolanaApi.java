@@ -11,6 +11,26 @@ import java.util.Map;
 public interface SolanaApi
 {
     /**
+     * Returns the block response for a given slot with default optional parameters.
+     *
+     * @param slot the slot number for the block
+     * @return a {@link SolanaClientResponse} containing the {@link BlockResponse}
+     * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
+     */
+    SolanaClientResponse<BlockResponse> getBlock(long slot) throws SolanaJsonRpcClientException;
+
+    /**
+     * Returns the block response for a given slot with optional parameters.
+     *
+     * @param slot the slot number for the block
+     * @param optionalParams  a map of optional parameters to customize the request such as `commitment`, `maxSupportedTransactionVersion`, `transactionDetails` and `encoding`
+     * @return a {@link SolanaClientResponse} containing the {@link BlockResponse}
+     * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
+     */
+    SolanaClientResponse<BlockResponse> getBlock(long slot, SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException;
+
+
+    /**
      * Sends a transaction to the blockchain with default optional parameters.
      *
      * @param transactionBlob the base64-encoded string representing the transaction

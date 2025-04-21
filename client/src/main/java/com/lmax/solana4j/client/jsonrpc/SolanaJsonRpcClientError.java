@@ -24,4 +24,13 @@ final class SolanaJsonRpcClientError implements SolanaClientResponse.SolanaClien
     {
         return errorMessage;
     }
+
+    @Override
+    public String toString()
+    {
+        return "SolanaJsonRpcClientError{" +
+                "errorCode=" + errorCode +
+                ", errorMessage='" + errorMessage + '\'' +
+                '}';
+    }
 }
