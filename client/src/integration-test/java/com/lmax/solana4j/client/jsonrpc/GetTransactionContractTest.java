@@ -181,12 +181,13 @@ final class GetTransactionContractTest extends SolanaClientIntegrationTestBase
         // especially when dealing with nested program invocations (inner instructions)
         assertThat(instruction.getStackHeight()).isEqualTo(null);
 
-        // i think the best we can do here is really just return a Map<String, Object> and let the user do their own parsing
+        // i think the best we can do here is really just return an Object (even Map<String, Object> not good enough) and let the user do their own parsing
         // since the parsing is very much program specific
         assertThat(instruction.getProgram()).isEqualTo("system");
         assertThat(instruction.getProgramId()).isEqualTo("11111111111111111111111111111111");
 
-        final var parsedInstruction = instruction.getInstructionParsed();
+        // i know what i'm doing because i know it's a Map - it could also be a String (memo program)
+        final var parsedInstruction = (Map<String, Object>) instruction.getInstructionParsed();
         assertThat(parsedInstruction.get("type")).isEqualTo("transfer");
         assertThat(parsedInstruction.get("info"))
                 .usingRecursiveComparison()
