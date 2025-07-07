@@ -546,17 +546,13 @@ public interface TransactionResponse
          */
         String getProgramId();
 
+
         /**
-         * Returns the parsed instruction data.
+         * Returns a map representation of the parsed instruction data.
          *
-         * <p>The returned object can be either a {@link String} if the instruction
-         * is a simple text value, or a {@link Map Map&lt;String, Object&gt;} if
-         * it represents a structured set of key-value pairs.
-         *
-         * @return The instruction data as a {@link String} or a {@link Map Map&lt;String, Object&gt;}.
-         * Callers should use {@code instanceof} to determine the actual type.
+         * @return a {@link Map} where keys are field names and values are the corresponding data
          */
-        Object getInstructionParsed();
+        Map<String, Object> getInstructionParsed();
 
         /**
          * Returns the stack height at which this instruction operates, if applicable.

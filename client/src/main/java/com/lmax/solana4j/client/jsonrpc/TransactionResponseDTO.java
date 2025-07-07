@@ -692,7 +692,7 @@ final class TransactionResponseDTO implements TransactionResponse
         static final class InstructionDTO implements Instruction
         {
             private final InstructionAccountsDTO accounts;
-            private final Object instructionParsed;
+            private final Map<String, Object> instructionParsed;
             private final String data;
             private final String program;
             private final String programId;
@@ -702,7 +702,7 @@ final class TransactionResponseDTO implements TransactionResponse
             @JsonCreator
             InstructionDTO(
                     final @JsonProperty("accounts") InstructionAccountsDTO accounts,
-                    final @JsonProperty("parsed") Object instructionParsed,
+                    final @JsonProperty("parsed") Map<String, Object> instructionParsed,
                     final @JsonProperty("data") String data,
                     final @JsonProperty("program") String program,
                     final @JsonProperty("programId") String programId,
@@ -749,7 +749,7 @@ final class TransactionResponseDTO implements TransactionResponse
             }
 
             @Override
-            public Object getInstructionParsed()
+            public Map<String, Object> getInstructionParsed()
             {
                 return instructionParsed;
             }
@@ -826,6 +826,7 @@ final class TransactionResponseDTO implements TransactionResponse
                 }
             }
         }
+
     }
 
     static final class LoadedAddressesDTO implements TransactionMetadata.LoadedAddresses
