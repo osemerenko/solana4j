@@ -1,0 +1,70 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "blockTime": 1751909390,
+    "meta": {
+      "computeUnitsConsumed": 150,
+      "err": null,
+      "fee": 5000,
+      "innerInstructions": [],
+      "logMessages": [
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success"
+      ],
+      "postBalances": [
+        999998998990000,
+        1000990000,
+        1
+      ],
+      "postTokenBalances": [],
+      "preBalances": [
+        999999998995000,
+        990000,
+        1
+      ],
+      "preTokenBalances": [],
+      "rewards": [],
+      "status": {
+        "Ok": null
+      }
+    },
+    "slot": 425,
+    "transaction": {
+      "message": {
+        "accountKeys": [
+          {
+            "pubkey": "osRAr6v5ujNNmDupwmcdFNV2ob2KB6AVVPidyw49Y9s",
+            "signer": true,
+            "source": "transaction",
+            "writable": true
+          },
+          {
+            "pubkey": "sCR7NonpU3TrqvusEiA4MAwDMLfiY1gyVPqw2b36d8V",
+            "signer": false,
+            "source": "transaction",
+            "writable": true
+          },
+          {
+            "pubkey": "11111111111111111111111111111111",
+            "signer": false,
+            "source": "transaction",
+            "writable": false
+          }
+        ],
+        "instructions": [
+          {
+            "parsed": "thisisjustastringitsnotamap",
+            "program": "system",
+            "programId": "11111111111111111111111111111111",
+            "stackHeight": null
+          }
+        ],
+        "recentBlockhash": "8kEyLU25YjsJFV4EtZAZmVwc7rSGF65j84z48We6cRKw"
+      },
+      "signatures": [
+        "iNbt8SC8TgiZCekuF8Qz7cUZ2qykVmKmbFwPTQZDZ2XVGZvWWRWRcybyRMAfsLd8a7Gzh6bHjFAhSJTz1iXdoT5"
+      ]
+    }
+  },
+  "id": 14
+}

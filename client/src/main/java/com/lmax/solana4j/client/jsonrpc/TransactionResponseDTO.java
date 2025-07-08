@@ -3,6 +3,7 @@ package com.lmax.solana4j.client.jsonrpc;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -692,7 +693,7 @@ final class TransactionResponseDTO implements TransactionResponse
         static final class InstructionDTO implements Instruction
         {
             private final InstructionAccountsDTO accounts;
-            private final Map<String, Object> instructionParsed;
+            private final InstructionParsedDTO instructionParsed;
             private final String data;
             private final String program;
             private final String programId;
@@ -702,7 +703,7 @@ final class TransactionResponseDTO implements TransactionResponse
             @JsonCreator
             InstructionDTO(
                     final @JsonProperty("accounts") InstructionAccountsDTO accounts,
-                    final @JsonProperty("parsed") Map<String, Object> instructionParsed,
+                    final @JsonProperty("parsed") InstructionParsedDTO instructionParsed,
                     final @JsonProperty("data") String data,
                     final @JsonProperty("program") String program,
                     final @JsonProperty("programId") String programId,
@@ -751,7 +752,7 @@ final class TransactionResponseDTO implements TransactionResponse
             @Override
             public Map<String, Object> getInstructionParsed()
             {
-                return instructionParsed;
+                return instructionParsed.get();
             }
 
             @Override
@@ -774,7 +775,6 @@ final class TransactionResponseDTO implements TransactionResponse
                         '}';
             }
         }
-
 
         @JsonDeserialize(using = InstructionAccountsDTO.InstructionAccountsDeserializer.class)
         static final class InstructionAccountsDTO implements Instruction.InstructionAccounts
@@ -827,6 +827,42 @@ final class TransactionResponseDTO implements TransactionResponse
             }
         }
 
+        @JsonDeserialize(using = InstructionParsedDTO.InstructionParsedDeserializer.class)
+        static final class InstructionParsedDTO
+        {
+            private final Map<String, Object> parsedInstruction;
+
+            InstructionParsedDTO(final Map<String, Object> parsedInstruction)
+            {
+                this.parsedInstruction = parsedInstruction;
+            }
+
+            public Map<String, Object> get()
+            {
+                return parsedInstruction;
+            }
+
+            private static class InstructionParsedDeserializer extends JsonDeserializer<InstructionParsedDTO>
+            {
+                @Override
+                public InstructionParsedDTO deserialize(final JsonParser parser, final DeserializationContext context) throws IOException
+                {
+                    final ObjectMapper mapper = (ObjectMapper) parser.getCodec();
+                    final JsonNode node = mapper.readTree(parser);
+
+                    if (node.isTextual())
+                    {
+                        return new InstructionParsedDTO(Map.of("", node.asText()));
+                    }
+                    else if (node.isObject())
+                    {
+                        final Map<String, Object> parsed = mapper.convertValue(node, new TypeReference<>() {});
+                        return new InstructionParsedDTO(parsed);
+                    }
+                    throw new IllegalArgumentException("Unsupported node type: " + node.getNodeType());
+                }
+            }
+        }
     }
 
     static final class LoadedAddressesDTO implements TransactionMetadata.LoadedAddresses
