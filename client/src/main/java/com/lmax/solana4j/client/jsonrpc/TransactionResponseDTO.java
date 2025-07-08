@@ -752,7 +752,7 @@ final class TransactionResponseDTO implements TransactionResponse
             @Override
             public Map<String, Object> getInstructionParsed()
             {
-                return instructionParsed.get();
+                return instructionParsed != null ? instructionParsed.get() : null;
             }
 
             @Override
