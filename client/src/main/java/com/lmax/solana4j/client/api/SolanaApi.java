@@ -327,4 +327,12 @@ public interface SolanaApi
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
     SolanaClientResponse<SolanaVersion> getVersion() throws SolanaJsonRpcClientException;
+
+    /**
+     * Retrieve the metadata of all the active nodes within the Solana cluster.
+     *
+     * @return a {@link SolanaClientResponse} containing a {@link List} of {@link ClusterNode} objects with the metadata of the nodes within the Solana cluster
+     * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
+     */
+    SolanaClientResponse<List<ClusterNode>> getClusterNodes() throws SolanaJsonRpcClientException;
 }
