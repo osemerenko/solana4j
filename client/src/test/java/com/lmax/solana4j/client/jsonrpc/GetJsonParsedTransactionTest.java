@@ -77,4 +77,24 @@ public class GetJsonParsedTransactionTest
         assertThat(instructionParsed).isEqualTo(parsed);
     }
 
+    @Test
+    public void shouldHandleNoInstructionParsed() throws IOException
+    {
+        final ObjectReader objectReader = mapper.readerFor(new TypeReference<RpcWrapperDTO<TransactionResponseDTO>>()
+        {
+        });
+        final RpcWrapperDTO<TransactionResponseDTO> response = objectReader.readValue(GetJsonParsedTransactionTest.class.getResource("/transactionWithNoParsedInstruction.json"));
+
+        final Map<String, Object> instructionParsed =
+                response
+                        .getResult()
+                        .getTransactionData()
+                        .getParsedTransactionData()
+                        .getMessage()
+                        .getInstructions()
+                        .get(0)
+                        .getInstructionParsed();
+
+        assertThat(instructionParsed).isNull();
+    }
 }
