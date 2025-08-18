@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.lmax.solana4j.client.api.AccountInfo;
 import com.lmax.solana4j.client.api.Blockhash;
 import com.lmax.solana4j.client.api.BlockResponse;
+import com.lmax.solana4j.client.api.ClusterNode;
 import com.lmax.solana4j.client.api.SignatureForAddress;
 import com.lmax.solana4j.client.api.SignatureStatus;
 import com.lmax.solana4j.client.api.SimulateTransactionResponse;
@@ -443,6 +444,15 @@ public final class SolanaJsonRpcClient implements SolanaApi
                               {
                               },
                 dto -> dto, "getVersion");
+    }
+
+    @Override
+    public SolanaClientResponse<List<ClusterNode>> getClusterNodes() throws SolanaJsonRpcClientException
+    {
+        return queryForObject(new TypeReference<RpcWrapperDTO<List<ClusterNodeDTO>>>()
+                              {
+                              },
+                ArrayList::new, "getClusterNodes");
     }
 
     private <S, T> SolanaClientResponse<S> queryForObject(
