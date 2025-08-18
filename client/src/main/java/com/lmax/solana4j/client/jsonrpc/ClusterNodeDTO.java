@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lmax.solana4j.client.api.ClusterNode;
 
+/**
+ * Data Transfer Object for the output from <code>getClusterNodes</code> RPC call.
+ */
 public class ClusterNodeDTO implements ClusterNode
 {
     private final long featureSet;
