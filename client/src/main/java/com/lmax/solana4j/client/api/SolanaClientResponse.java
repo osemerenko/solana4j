@@ -1,5 +1,7 @@
 package com.lmax.solana4j.client.api;
 
+import java.util.Optional;
+
 /**
  * Represents a response from the Solana client, encapsulating either a successful result or an error.
  *
@@ -7,6 +9,8 @@ package com.lmax.solana4j.client.api;
  */
 public interface SolanaClientResponse<T>
 {
+    Optional<SolanaRpcResponse.Context> getContext();
+
     /**
      * Returns the response payload in the case of a successful operation.
      *

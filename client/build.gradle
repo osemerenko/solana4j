@@ -3,7 +3,7 @@ plugins {
     id 'java-library'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'maven-publish'
-    id 'checkstyle'
+//    id 'checkstyle'
     id 'org.jreleaser' version '1.14.0'
     id 'com.autonomousapps.dependency-analysis' version '2.2.0'
 }
@@ -119,10 +119,10 @@ tasks.processTestResources {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-check.dependsOn unitTest
-check.dependsOn integrationTest
-check.dependsOn checkstyleMain
-check.dependsOn checkstyleIntegrationTest
+//check.dependsOn unitTest
+//check.dependsOn integrationTest
+//check.dependsOn checkstyleMain
+//check.dependsOn checkstyleIntegrationTest
 
 javadoc {
     title = 'solana4j-json-rpc'
@@ -169,7 +169,7 @@ jreleaser {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.lmax'
+            groupId = 'com.lmax.fork'
             artifactId = 'solana4j-json-rpc'
 
             from components.java

@@ -4,6 +4,7 @@ import com.lmax.solana4j.client.jsonrpc.SolanaJsonRpcClientException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Represents the API for interacting with a solana node.
@@ -146,6 +147,10 @@ public interface SolanaApi
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
     SolanaClientResponse<AccountInfo> getAccountInfo(String address, SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException;
+
+    SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(Set<String> addresses) throws SolanaJsonRpcClientException;
+
+    SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(Set<String> addresses, final SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException;
 
     /**
      * Returns the current block height of the blockchain with default optional parameters.
