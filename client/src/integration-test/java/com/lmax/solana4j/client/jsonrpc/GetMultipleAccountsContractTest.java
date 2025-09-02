@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.net.http.HttpClient;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,7 +17,7 @@ public class GetMultipleAccountsContractTest {
 
     @Test
     void shouldGetMultipleAccountsDefaultOptionalParams() throws SolanaJsonRpcClientException {
-        final Set<String> addresses = Set.of("E2BcoCeJLTa27mAXDA4xwEq3pBUcyH6XXEHYk4KvKYTv",
+        final List<String> addresses = List.of("E2BcoCeJLTa27mAXDA4xwEq3pBUcyH6XXEHYk4KvKYTv",
                 "HfERMT5DRA6C1TAqecrJQFpmkf3wsWTMncqnj3RDg5aw");
 
         final SolanaClientResponse<List<AccountInfo>> response = SOLANA_API.getMultipleAccounts(addresses);

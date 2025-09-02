@@ -15,7 +15,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 
 import static com.lmax.solana4j.client.jsonrpc.SolanaJsonRpcClientOptionalParams.defaultOptionalParams;
@@ -205,7 +204,7 @@ public final class SolanaJsonRpcClient implements SolanaApi {
     }
 
     @Override
-    public SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(Set<String> addresses) throws SolanaJsonRpcClientException {
+    public SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(List<String> addresses) throws SolanaJsonRpcClientException {
         return queryForObject(new TypeReference<>() {
                               },
                 MultipleAccountsDTO::getContext,
@@ -215,7 +214,7 @@ public final class SolanaJsonRpcClient implements SolanaApi {
     }
 
     @Override
-    public SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(Set<String> addresses, final SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException {
+    public SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(List<String> addresses, final SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException {
         return queryForObject(new TypeReference<>() {
                               },
                 MultipleAccountsDTO::getContext,

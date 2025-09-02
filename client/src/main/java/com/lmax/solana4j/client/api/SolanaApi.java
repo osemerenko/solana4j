@@ -4,13 +4,11 @@ import com.lmax.solana4j.client.jsonrpc.SolanaJsonRpcClientException;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Represents the API for interacting with a solana node.
  */
-public interface SolanaApi
-{
+public interface SolanaApi {
     /**
      * Returns the block response for a given slot with default optional parameters.
      *
@@ -23,8 +21,8 @@ public interface SolanaApi
     /**
      * Returns the block response for a given slot with optional parameters.
      *
-     * @param slot the slot number for the block
-     * @param optionalParams  a map of optional parameters to customize the request such as `commitment`, `maxSupportedTransactionVersion`, `transactionDetails` and `encoding`
+     * @param slot           the slot number for the block
+     * @param optionalParams a map of optional parameters to customize the request such as `commitment`, `maxSupportedTransactionVersion`, `transactionDetails` and `encoding`
      * @return a {@link SolanaClientResponse} containing the {@link BlockResponse}
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -64,7 +62,7 @@ public interface SolanaApi
      * Returns the transaction response for a given transaction signature with optional parameters.
      *
      * @param transactionSignature the base58-encoded signature of the transaction
-     * @param optionalParams  a map of optional parameters to customize the request such as `commitment`, `maxSupportedTransactionVersion` and `encoding`
+     * @param optionalParams       a map of optional parameters to customize the request such as `commitment`, `maxSupportedTransactionVersion` and `encoding`
      * @return a {@link SolanaClientResponse} containing the {@link TransactionResponse}
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -85,7 +83,7 @@ public interface SolanaApi
      *
      * @param address        the base58-encoded public key of the recipient account
      * @param amountLamports the amount of lamports to be airdropped
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment`
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment`
      * @return a {@link SolanaClientResponse} containing the transaction signature as a base58-encoded string
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -104,7 +102,7 @@ public interface SolanaApi
      * Returns the balance of an account in lamports with optional parameters.
      *
      * @param address        the base58-encoded public key of the account
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment` and `minContextSlot`
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment` and `minContextSlot`
      * @return a {@link SolanaClientResponse} containing the balance of the account in lamports
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -123,7 +121,7 @@ public interface SolanaApi
      * Returns the token account balance of an spl token account with optional parameters.
      *
      * @param address        the base58-encoded public key of the token account
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment`
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment`
      * @return a {@link SolanaClientResponse} containing the {@link TokenAmount} representing the token balance of the account
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -141,16 +139,16 @@ public interface SolanaApi
     /**
      * Returns the account information for the specified address with optional parameters.
      *
-     * @param address the base58-encoded public key of the account
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment` and `encoding`
+     * @param address        the base58-encoded public key of the account
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment` and `encoding`
      * @return a {@link SolanaClientResponse} containing the {@link AccountInfo} representing information about the account
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
     SolanaClientResponse<AccountInfo> getAccountInfo(String address, SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException;
 
-    SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(Set<String> addresses) throws SolanaJsonRpcClientException;
+    SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(List<String> addresses) throws SolanaJsonRpcClientException;
 
-    SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(Set<String> addresses, final SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException;
+    SolanaClientResponse<List<AccountInfo>> getMultipleAccounts(List<String> addresses, final SolanaClientOptionalParams optionalParams) throws SolanaJsonRpcClientException;
 
     /**
      * Returns the current block height of the blockchain with default optional parameters.
@@ -163,7 +161,7 @@ public interface SolanaApi
     /**
      * Returns the current block height with optional parameters.
      *
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment` and `minContextSlot`
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment` and `minContextSlot`
      * @return a {@link SolanaClientResponse} containing the current block height
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -180,7 +178,7 @@ public interface SolanaApi
     /**
      * Returns the current slot number with optional parameters.
      *
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment`, and `minContextSlot`
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment`, and `minContextSlot`
      * @return a {@link SolanaClientResponse} containing the current slot number
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -197,7 +195,7 @@ public interface SolanaApi
     /**
      * Returns the most recent blockhash with optional parameters.
      *
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment` and `minContextSlot`
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment` and `minContextSlot`
      * @return a {@link SolanaClientResponse} containing the {@link Blockhash} representing the most recent blockhash
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -218,7 +216,7 @@ public interface SolanaApi
      * This is the minimum balance needed to ensure the account is rent-exempt.
      *
      * @param size           the size of the account in bytes
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment`
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment`
      * @return a {@link SolanaClientResponse} containing the minimum balance in lamports for rent exemption
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -252,9 +250,9 @@ public interface SolanaApi
     /**
      * Retrieves a list of transaction signatures for a specified address, with optional parameters.
      *
-     * @param address  the base58-encoded public key of the address
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment`, `minContextSlot`, `limit`
-     *                        `before` and `until`
+     * @param address        the base58-encoded public key of the address
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment`, `minContextSlot`, `limit`
+     *                       `before` and `until`
      * @return a {@link SolanaClientResponse} containing a list of {@link SignatureForAddress} objects enumerating signatures relating to the address
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -274,7 +272,7 @@ public interface SolanaApi
      * Allows for additional filters or customizations when querying transaction statuses.
      *
      * @param transactionSignatures a list of base58-encoded transaction signatures.
-     * @param optionalParams  a map of optional parameters to customize the request, such as `searchTransactionHistory`
+     * @param optionalParams        a map of optional parameters to customize the request, such as `searchTransactionHistory`
      * @return a {@link SolanaClientResponse} containing a list of {@link SignatureStatus} objects detailing the signature statuses
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
@@ -318,8 +316,8 @@ public interface SolanaApi
      * This allows for additional customizations, such as setting the commitment level or enabling signature verification.
      *
      * @param transaction    the base64-encoded string representing the transaction
-     * @param optionalParams  a map of optional parameters to customize the request, such as `commitment`, `sigVerify`, `replaceRecentBlockhash`,
-     *                        `minContextSlot`, `encoding`, `innerInstructions` and `accounts`
+     * @param optionalParams a map of optional parameters to customize the request, such as `commitment`, `sigVerify`, `replaceRecentBlockhash`,
+     *                       `minContextSlot`, `encoding`, `innerInstructions` and `accounts`
      * @return a {@link SolanaClientResponse} containing a {@link SimulateTransactionResponse} object with details of the simulation
      * @throws SolanaJsonRpcClientException if there is an error with the JSON-RPC request
      */
